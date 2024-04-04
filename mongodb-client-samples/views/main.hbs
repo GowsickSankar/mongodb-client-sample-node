@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mongo DB Sample</title>
+</head>
+<body>
+    <h1>Mongo DB Sample</h1>
+    {{text}}
+    <br>
+
+    {{#if edit_id}}
+
+    <h3>Edit</h3>
+   <form method="post" action="/UpdateProduct/{{edit_id}}">
+    <label for="name">Name: </label>
+    <input type="text" name="name" value="{{edit_product.name}}"><br><br>
+    
+    <label for="age">Price: </label>      
+    <input type="text" name="price" value="{{edit_product.price}}"><br><br>  
+
+    <label for="age">Category: </label>      
+    <input type="text" name="category" value="{{edit_product.category}}"><br><br>
+        
+    <input type="submit"></input> 
+   </form>
+
+    {{else}}
+
+    <h3>Create</h3>
+   <form method="post" action="/addProduct">
+    <label for="name">Name: </label>
+    <input type="text" name="name"><br><br>
+    
+    <label for="age">Price: </label>      
+    <input type="text" name="price"><br><br>  
+
+    <label for="age">Category: </label>      
+    <input type="text" name="category"><br><br>
+        
+    <input type="submit"></input> 
+   </form>
+
+    {{/if}}
+
+   <br>
+   
+
+    <ul>
+        {{#each products}}
+        <li>{{this.name}} :- {{this.price}}&nbsp;<a href="/?edit_id={{this._id}}">Edit</a>&nbsp;<a href="/?delete_id={{this._id}}" onclick="return confirm('Are You Sure Want Delete?')">Delete</a></li>
+        {{/each}}
+    </ul>
+</body>
+</html>
